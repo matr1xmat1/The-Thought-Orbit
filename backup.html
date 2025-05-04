@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Thought Orbit</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --planet-size: 4vw;
+        --sun-size: 12vw;
+      }
+
+      .container {
+        background-image: url("img/background.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+        z-index: 0;
+      }
+
+      .thought-system {
+        z-index: 1;
+      }
+
+      .sun {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .sun img {
+        width: var(--sun-size);
+        height: auto;
+      }
+
+      .orbit {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 0.3vw solid rgba(255, 2, 2, 0.897);
+        border-radius: 50%;
+      }
+
+      .orbit .planet {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .orbit-1 {
+        height: 20vw;
+        width: 21vw;
+        animation: spin 10s linear infinite;
+        z-index: 4;
+      }
+      .orbit-2 {
+        height: 27vw;
+        width: 29vw;
+        border-color: #ff7e5f;
+        animation: spin 15s linear infinite;
+        z-index: 3;
+      }
+      .orbit-3 {
+        height: 35vw;
+        width: 36vw;
+        border-color: #feb47b;
+        animation: spin 20s linear infinite;
+        z-index: 2;
+      }
+      .orbit-4 {
+        height: 42vw;
+        width: 43vw;
+        border-color: #ff6a88;
+        animation: spin 25s linear infinite;
+        z-index: 1;
+      }
+
+      .orbit img {
+        width: var(--planet-size);
+        height: auto;
+      }
+
+      @keyframes spin {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+
+      .orbit:hover {
+        animation-play-state: paused;
+      }
+
+      .card {
+        background: linear-gradient(135deg, #ffe29f, #ffa99f);
+        padding: 3rem;
+        border-radius: 20px;
+        width: 90vw;
+        max-width: 600px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        color: #333;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 6;
+      }
+
+      .overly {
+        height: 100%;
+        width: 100%;
+        z-index: 5;
+        position: absolute;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .card .top-left {
+        font-size: 1.5rem;
+        color: #444;
+      }
+
+      .card .top-left b {
+        letter-spacing: 1px;
+      }
+
+      .card .quote {
+        font-size: 2rem;
+        font-weight: 600;
+        text-align: center;
+        margin: auto 0;
+        line-height: 1.4;
+      }
+
+      .card .author {
+        align-self: flex-end;
+        font-size: 1rem;
+        color: #222;
+        opacity: 0.9;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+        cursor: pointer;
+        padding: 0.25rem;
+        transition: color 0.3s ease;
+      }
+
+      .close-btn:hover {
+        color: #e74c3c;
+      }
+
+      @media (max-width: 600px) {
+        :root {
+          --planet-size: 6vw;
+          --sun-size: 18vw;
+        }
+        .card .quote {
+          font-size: 1.2rem;
+        }
+        .card .top-left {
+          font-size: 1.2rem;
+        }
+      }
+
+      @media (min-width: 1201px) {
+        :root {
+          --planet-size: 3vw;
+          --sun-size: 10vw;
+        }
+      }
+
+      .neon-title {
+        position: absolute;
+        top: 3vw;
+        left: 5vw;
+        font-size: clamp(1rem, 2.2vw, 2rem);
+        font-weight: 600;
+        letter-spacing: 2px;
+        color: #ffb07c;
+        text-shadow: 0 0 1px #ffb07c, 0 0 3px #ffa99f;
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="neon-title">The Thought Orbit</div>
+
+      <div class="card hidden">
+        <button class="close-btn">&times;</button>
+        <div class="top-left">Be a <b>Great Man</b></div>
+        <div class="quote">
+          “Success is not final, failure is not fatal: It is the courage to
+          continue that counts.”
+        </div>
+        <div class="author">— Winston Churchill</div>
+      </div>
+
+      <div class="thought-system">
+        <div class="sun">
+          <img src="./img/sun.png" alt="" />
+        </div>
+        <div class="orbits">
+          <div class="orbit orbit-1">
+            <div class="planet">
+              <img src="./img/planet-1.png" alt="" />
+            </div>
+          </div>
+          <div class="orbit orbit-2">
+            <div class="planet">
+              <img src="./img/planet-2.png" alt="" />
+            </div>
+          </div>
+          <div class="orbit orbit-3">
+            <div class="planet">
+              <img src="./img/planet-3.png" alt="" />
+            </div>
+          </div>
+          <div class="orbit orbit-4">
+            <div class="planet">
+              <img src="./img/planet-4.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="overly hidden"></div>
+    </div>
+    <script>
+      const planets = document.querySelectorAll(".planet");
+      const close = document.querySelector(".close-btn");
+      const overly = document.querySelector(".overly");
+
+      const quotes = [
+        {
+          quote:
+            "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+          author: " Winston Churchill",
+        },
+        {
+          quote: "He who has a why to live can bear almost any how.",
+          author: "Friedrich Nietzsche",
+        },
+        {
+          quote: "The best way to predict the future is to create it.",
+          author: "Peter Drucker",
+        },
+        {
+          quote: "In the middle of every difficulty lies opportunity.",
+          author: "Albert Einstein",
+        },
+      ];
+
+      for (let i = 0; i < planets.length; i++) {
+        planets[i].addEventListener("click", () => {
+          const card = document.querySelector(".card");
+          const overly = document.querySelector(".overly");
+          const quoteText = document.querySelector(".quote");
+          const authorText = document.querySelector(".author");
+
+          card.classList.remove("hidden");
+          overly.classList.remove("hidden");
+
+          quoteText.innerHTML = quotes[i].quote;
+          authorText.innerHTML = quotes[i].author;
+        });
+      }
+
+      const closeCard = () => {
+        document.querySelector(".card").classList.add("hidden");
+        document.querySelector(".overly").classList.add("hidden");
+      };
+
+      close.addEventListener("click", closeCard);
+      overly.addEventListener("click", closeCard);
+    </script>
+  </body>
+</html>
